@@ -12,6 +12,9 @@ firebase.js
 # production
 /build
 
+# protected
+/protected
+
 # misc
 .DS_Store
 .env.local
