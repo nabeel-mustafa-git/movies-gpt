@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
-import Footer from "./Footer";
 import { useRef, useState } from "react";
 import checkValidateData from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = ({ login = true }) => {
   const [validationError, setValidationError] = useState(null);
+  const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -16,9 +20,48 @@ const Login = ({ login = true }) => {
     const result =
       login === true
         ? checkValidateData("Dummy", email.current.value, password.current.value)
-        : checkValidateData((name.current.value = ""), email.current.value, password.current.value);
+        : checkValidateData(name.current.value, email.current.value, password.current.value);
 
     setValidationError(result);
+    if (result) return;
+
+    if (login === false) {
+      //sign up logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              const user = auth.currentUser;
+              dispatch(addUser({ uid: user.uid, email: user.email, displayName: user.displayName }));
+            })
+            .catch((error) => {
+              alert("Error: " + error);
+            });
+        })
+        .catch((error) => {
+          alert("Error: " + error);
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    } else {
+      //sign in logic
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          alert("Error: User not Found");
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    }
   };
 
   return (
@@ -54,8 +97,11 @@ const Login = ({ login = true }) => {
             placeholder="Password"
             className="text-white bg-transparent border px-6 py-3 rounded-md border-gray-400 font-semibold"
           />
-          <div className="text-[#C11119]">{validationError === null ? "" : validationError.map((item) => <p>{item}</p>)}</div>
-          <button onClick={handleButtonClick} className="bg-[#C11119] text-white font-semibold py-2 w-full rounded-md hover:bg-red-800">
+          <div className="color-red">{validationError === null ? "" : validationError.map((item, index) => <p key={index}>{item}</p>)}</div>
+          <button
+            onClick={handleButtonClick}
+            className="bgrd-red text-white font-semibold py-2 w-full rounded-md duration-150 ease-linear hover:bg-red-800"
+          >
             {login === true ? "Sign In" : "Sign Up"}
           </button>
           {login === true ? (

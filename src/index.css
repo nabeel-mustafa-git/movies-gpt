@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.color-red {
+  color: #e80202;
+}
+.bgrd-red {
+  background-color: #e80202;
+}
+.title-font {
+  font-family: "Barlow Condensed", sans-serif;
+}

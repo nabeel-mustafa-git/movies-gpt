@@ -1,8 +1,10 @@
+import logo from "../images/movai-bw-logo.png";
+
 const Footer = () => {
   return (
     <footer className="bg-black md:px-36 sm:px-10 px-5 py-10 flex flex-col gap-4">
-      <h2 className="text-gray-500 text-3xl font-bold py-4">MOVAI</h2>
-      <p className="text-red-500">
+      <img draggable="false" className="w-[180px] max-md:w-[120px] opacity-50" src={logo} />
+      <p className="color-red">
         Questions?{" "}
         <a href="https://www.linkedin.com/in/nabeel-dev" target="_blank" className="text-gray-500 border-b border-gray-500">
           Contact me on Linkdin!
