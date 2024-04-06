@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { removeMainMovie } from "../utils/heroMovieSlice";
 import { removeNowPlayingMovies } from "../utils/moviesSlice";
+import { removePopularMovies } from "../utils/popularMoviesSlice";
+import { removeTopRatedMovies } from "../utils/topRatedSlice";
+import { removeUpcommingMovies } from "../utils/UpcommingSlice";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -44,6 +47,9 @@ const Nav = () => {
         dispatch(removeUser());
         dispatch(removeMainMovie());
         dispatch(removeNowPlayingMovies());
+        dispatch(removePopularMovies());
+        dispatch(removeTopRatedMovies());
+        dispatch(removeUpcommingMovies());
         navigate("/");
       }
     });
@@ -52,14 +58,14 @@ const Nav = () => {
 
   return (
     <nav className="absolute z-10 flex w-full px-40 max-md:px-5 justify-between items-center bg-gradient-to-b from-black pb-20">
-      <img draggable="false" className="w-[180px] max-md:w-[120px]" src={logo} />
+      <img draggable="false" className="w-[140px] max-md:w-[100px]" src={logo} />
       <div>
         <div className="relative inline-block text-left">
           <div>
             <button
               onClick={handleClick}
               type="button"
-              className="inline-flex w-full justify-center items-center gap-x-1.5 rounded-md bg-black bg-opacity-30 px-3 py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-gray-500 hover:bg-opacity-50"
+              className="inline-flex w-full justify-center items-center gap-x-1.5 rounded-md bg-black bg-opacity-30 px-3 py-1 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-gray-500 hover:bg-opacity-50"
               id="menu-button"
               aria-expanded="true"
               aria-haspopup="true"
@@ -93,7 +99,7 @@ const Nav = () => {
           >
             <div className="py-1" role="none">
               <a
-                href="#"
+                href=""
                 className="text-gray-300 block px-4 py-2 text-sm border-b border-gray-700 hover:bg-stone-600"
                 role="menuitem"
                 tabIndex="-1"
@@ -103,12 +109,12 @@ const Nav = () => {
                 {user ? <h5 className="text-gray-100 font-semibol text-base">{user.email}</h5> : ""}
               </a>
 
-              <a href="#" className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
+              <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
                 <Link to="/browse">Browse</Link>
-              </a>
-              <a href="#" className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
+              </div>
+              <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
                 Contact
-              </a>
+              </div>
               <button
                 onClick={handleSignOut}
                 className="text-gray-300 block w-full px-4 py-2 text-left text-sm border-t border-gray-700 hover:bg-stone-600"

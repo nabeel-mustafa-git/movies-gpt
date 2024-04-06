@@ -4,7 +4,6 @@ import useFetchSingleMovieData from "../hooks/useFetchSingleMovieData";
 const HeroMovieData = ({ movieId }) => {
   var data = null;
   data = useFetchSingleMovieData(movieId);
-  console.log(data);
 
   return (
     <div>

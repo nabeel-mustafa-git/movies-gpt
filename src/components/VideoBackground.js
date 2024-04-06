@@ -17,6 +17,7 @@ const VideoBackground = ({ videoId }) => {
         ""
       )}
       <div className="absolute w-full h-[300px] top-0 left-0 bg-gradient-to-b from-black"></div>
+      <div className="absolute w-full h-[200px] bottom-0 left-0 bg-gradient-to-t from-20% from-black"></div>
     </div>
   );
 };
