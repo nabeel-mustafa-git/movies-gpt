@@ -14,7 +14,7 @@ const Browse = () => {
 
   return (
     <div className="bg-black text-white">
-      <Nav />
+      <Nav route={"/browse"} />
       <MainContainer />
       <SecondaryContainer />
     </div>

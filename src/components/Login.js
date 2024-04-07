@@ -1,15 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import { useRef, useState } from "react";
 import checkValidateData from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { MOVIES_BG_IMAGE } from "../utils/constants";
 
 const Login = ({ login = true }) => {
   const [validationError, setValidationError] = useState(null);
-  const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -38,7 +36,7 @@ const Login = ({ login = true }) => {
             .then(() => {
               // Profile updated!
               const user = auth.currentUser;
-              dispatch(addUser({ uid: user.uid, email: user.email, displayName: user.displayName }));
+              // dispatch(addUser({ uid: user.uid, email: user.email, displayName: user.displayName }));
             })
             .catch((error) => {
               alert("Error: " + error);
@@ -67,11 +65,7 @@ const Login = ({ login = true }) => {
   return (
     <div className="relative w-full min-h-svh h-fit flex flex-col items-center max-md:bg-black">
       {login === true ? <Header /> : <Header signin={true} />}
-      <img
-        draggable="false"
-        className="absolute z-[-99] top-0 left-0 w-full h-full object-cover max-md:hidden"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/9d3533b2-0e2b-40b2-95e0-ecd7979cc88b/ca77f965-b83c-4616-93a3-a2f8fabb378c/PK-en-20240311-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
-      />
+      <img draggable="false" className="absolute z-[-99] top-0 left-0 w-full h-full object-cover max-md:hidden bg-black" src={MOVIES_BG_IMAGE} />
       <div className=" bg-black md:w-[500px] max-md:w-full  rounded-md p-16 pb-36 bg-opacity-80 my-32">
         <form className="flex flex-col gap-4">
           <label className="text-white font-bold text-4xl pb-6">{login === true ? "Sign In" : "Sign Up"}</label>

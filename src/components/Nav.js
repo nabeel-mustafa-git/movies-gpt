@@ -14,7 +14,7 @@ import { removePopularMovies } from "../utils/popularMoviesSlice";
 import { removeTopRatedMovies } from "../utils/topRatedSlice";
 import { removeUpcommingMovies } from "../utils/UpcommingSlice";
 
-const Nav = () => {
+const Nav = ({ route }) => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const user = useSelector((store) => store.user);
@@ -41,7 +41,7 @@ const Nav = () => {
       if (user) {
         // User is signed in or signed up
         dispatch(addUser({ uid: user.uid, email: user.email, displayName: user.displayName }));
-        navigate("/browse");
+        navigate(route);
       } else {
         // User is signed out
         dispatch(removeUser());
@@ -109,12 +109,16 @@ const Nav = () => {
                 {user ? <h5 className="text-gray-100 font-semibol text-base">{user.email}</h5> : ""}
               </a>
 
-              <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
-                <Link to="/browse">Browse</Link>
-              </div>
-              <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
-                Contact
-              </div>
+              <Link to="/browse">
+                <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
+                  Browse
+                </div>
+              </Link>
+              <Link to="/suggestion">
+                <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
+                  AI movie suggestion
+                </div>
+              </Link>
               <button
                 onClick={handleSignOut}
                 className="text-gray-300 block w-full px-4 py-2 text-left text-sm border-t border-gray-700 hover:bg-stone-600"

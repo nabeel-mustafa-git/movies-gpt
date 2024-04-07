@@ -4,6 +4,7 @@ import Error from "./Error";
 import PageNotFound from "./PageNotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import Suggestion from "./Suggestion";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -18,6 +19,10 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
+    },
+    {
+      path: "/suggestion",
+      element: <Suggestion />,
     },
     {
       path: "*",
