@@ -10,7 +10,7 @@ const MovieCard = ({ poster, altText, id }) => {
           <img
             src={SMALL_IMG_URL + poster}
             alt={altText}
-            className="rounded-md hover:scale-95 duration-100 ease-in-out  min-w-[200px] max-sm:min-w-[150px]"
+            className="rounded-md hover:scale-95 duration-100 ease-in-out  min-w-[200px] max-sm:min-w-[150px] max-w-[200px] max-sm:max-w-[150px]"
           />
         </Link>
       )}

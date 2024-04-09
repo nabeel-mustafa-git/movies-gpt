@@ -40,7 +40,7 @@ const HeroMovieData = ({ movieId }) => {
               </svg>
               Play
             </button>
-            <Link to={"/movie/" + movieId}>
+            <Link to={"/movie/" + data?.id}>
               <button className="py-1 px-5 bg-gray-800 border border-gray-400 rounded-sm hover:bg-opacity-50 duration-150 font-light">
                 Read more
               </button>

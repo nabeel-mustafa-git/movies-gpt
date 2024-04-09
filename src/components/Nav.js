@@ -57,17 +57,43 @@ const Nav = ({ route }) => {
   }, []);
 
   return (
-    <nav className="absolute z-10 flex w-full px-40 max-md:px-5 justify-between items-center bg-gradient-to-b from-black pb-20">
-      <Link to="/browse">
-        <img draggable="false" className="w-[140px] max-md:w-[100px]" src={logo} />
-      </Link>
+    <nav className="absolute z-10 flex w-full px-40 max-lg:px-20 max-md:px-5 justify-between items-center bg-gradient-to-b from-black pb-20">
+      <div className="flex items-center gap-10 text-gray-400">
+        <Link to="/browse">
+          <img draggable="false" className="w-[140px] max-md:w-[100px]" src={logo} />
+        </Link>
+        <div className="max-sm:hidden">
+          <Link to="/suggestion">
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+              </svg>
+              <p>Ai suggestion</p>
+            </div>
+          </Link>
+        </div>
+        <div className="max-sm:hidden">
+          <Link to="/search">
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+              <p>Search</p>
+            </div>
+          </Link>
+        </div>
+      </div>
       <div>
         <div className="relative inline-block text-left">
           <div>
             <button
               onClick={handleClick}
               type="button"
-              className="inline-flex w-full justify-center items-center gap-x-1.5 rounded-md bg-black bg-opacity-30 px-3 py-1 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-gray-500 hover:bg-opacity-50"
+              className="inline-flex w-full justify-center items-center gap-x-1.5 rounded-md bg-black bg-opacity-85 px-3 py-1 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-gray-500 hover:bg-opacity-50"
               id="menu-button"
               aria-expanded="true"
               aria-haspopup="true"
@@ -91,7 +117,7 @@ const Nav = ({ route }) => {
           </div>
 
           <div
-            className={`absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-black bg-opacity-50 shadow-lg ring-1 ring-white ring-opacity-30 focus:outline-none ${
+            className={`absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-black bg-opacity-85 shadow-lg ring-1 ring-white ring-opacity-30 focus:outline-none ${
               show ? "block" : "hidden"
             }`}
             role="menu"

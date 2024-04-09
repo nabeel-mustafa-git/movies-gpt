@@ -2,19 +2,27 @@ import Nav from "./Nav";
 import { useRef, useState } from "react";
 import { MOVIES_BG_IMAGE, api_options } from "../utils/constants";
 import MovieCard from "./MovieCard";
+import Spinner from "./Spinner";
 
 const Search = () => {
   const [movies, setMovies] = useState(null);
   const [string, setString] = useState("");
   const [page, setPage] = useState(2);
+  const [loader, setLoader] = useState(false);
   const query = useRef();
 
   const getData = async (query) => {
-    const res = await fetch("https://api.themoviedb.org/3/search/movie?query=" + query + "&include_adult=false&language=en-US&page=1", api_options);
-    const data = await res.json();
-    setMovies(data.results);
-    setString(query);
-    setPage(2);
+    try {
+      setLoader(true);
+      const res = await fetch("https://api.themoviedb.org/3/search/movie?query=" + query + "&include_adult=false&language=en-US&page=1", api_options);
+      const data = await res.json();
+      setMovies(data.results);
+      setString(query);
+      setPage(2);
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -24,19 +32,25 @@ const Search = () => {
   };
 
   const handleLoadMore = async () => {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" + string + "&include_adult=false&language=en-US&page=" + page,
-      api_options
-    );
-    const data = await res.json();
-    setMovies(movies.concat(data.results));
-    setPage(page + 1);
+    try {
+      setLoader(true);
+      const res = await fetch(
+        "https://api.themoviedb.org/3/search/movie?query=" + string + "&include_adult=false&language=en-US&page=" + page,
+        api_options
+      );
+      const data = await res.json();
+      setMovies(movies.concat(data.results));
+      setPage(page + 1);
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
       <Nav route={"/search"} />
-
+      {loader === true ? <Spinner /> : ""}
       <div className="relative w-full min-h-svh bg-black bg-opacity-85 text-white">
         <img className="fixed top-0 left-0 w-full h-full object-cover -z-10" src={MOVIES_BG_IMAGE} />
         <div className={`w-full h-full flex flex-col items-center gap-5 justify-center pt-[100px] p-5`}>

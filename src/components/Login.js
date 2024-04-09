@@ -5,14 +5,17 @@ import checkValidateData from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { MOVIES_BG_IMAGE } from "../utils/constants";
+import Spinner from "./Spinner";
 
 const Login = ({ login = true }) => {
   const [validationError, setValidationError] = useState(null);
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const [loader, setLoader] = useState(false);
 
   const handleButtonClick = (e) => {
+    setLoader(true);
     e.preventDefault();
 
     const result =
@@ -60,10 +63,12 @@ const Login = ({ login = true }) => {
           const errorMessage = error.message;
         });
     }
+    setLoader(false);
   };
 
   return (
     <div className="relative w-full min-h-svh h-fit flex flex-col items-center max-md:bg-black">
+      {loader === "true" ? <Spinner /> : <></>}
       {login === true ? <Header /> : <Header signin={true} />}
       <img draggable="false" className="absolute z-[-99] top-0 left-0 w-full h-full object-cover max-md:hidden bg-black" src={MOVIES_BG_IMAGE} />
       <div className=" bg-black md:w-[500px] max-md:w-full  rounded-md p-16 pb-36 bg-opacity-80 my-32">

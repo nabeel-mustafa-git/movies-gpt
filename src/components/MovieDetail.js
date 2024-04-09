@@ -3,6 +3,8 @@ import Nav from "./Nav";
 import useFetchSingleMovieData from "../hooks/useFetchSingleMovieData";
 import { ORIGINAL_IMG_URL } from "../utils/constants";
 import useMovieTrailer from "../hooks/useMovieTrailer";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -12,6 +14,7 @@ const MovieDetail = () => {
 
   return (
     <>
+      {movie ? <></> : <Spinner up="false" />}
       <Nav route={"/movie/" + id} />
       {movie && (
         <div>

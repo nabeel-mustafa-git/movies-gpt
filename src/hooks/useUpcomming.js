@@ -7,9 +7,13 @@ const useUpcomming = () => {
   const dispatch = useDispatch();
 
   const getData = async () => {
-    const res = await fetch("https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1", api_options);
-    const data = await res.json();
-    dispatch(addUpcommingMovies(data.results));
+    try {
+      const res = await fetch("https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1", api_options);
+      const data = await res.json();
+      dispatch(addUpcommingMovies(data.results));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
