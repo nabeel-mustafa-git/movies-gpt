@@ -58,7 +58,9 @@ const Nav = ({ route }) => {
 
   return (
     <nav className="absolute z-10 flex w-full px-40 max-md:px-5 justify-between items-center bg-gradient-to-b from-black pb-20">
-      <img draggable="false" className="w-[140px] max-md:w-[100px]" src={logo} />
+      <Link to="/browse">
+        <img draggable="false" className="w-[140px] max-md:w-[100px]" src={logo} />
+      </Link>
       <div>
         <div className="relative inline-block text-left">
           <div>
@@ -100,28 +102,33 @@ const Nav = ({ route }) => {
             <div className="py-1" role="none">
               <a
                 href=""
-                className="text-gray-300 block px-4 py-2 text-sm border-b border-gray-700 hover:bg-stone-600"
+                className="text-gray-100 block px-4 py-2 text-sm border-b border-gray-700 hover:bg-stone-600"
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-0"
               >
                 {user ? user.displayName : ""}
-                {user ? <h5 className="text-gray-100 font-semibol text-base">{user.email}</h5> : ""}
+                {user ? <h5 className="text-gray-400 font-semibol text-base">{user.email}</h5> : ""}
               </a>
 
               <Link to="/browse">
-                <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
+                <div className="text-gray-100 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
                   Browse
                 </div>
               </Link>
+              <Link to="/search">
+                <div className="text-gray-100 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-1">
+                  Search
+                </div>
+              </Link>
               <Link to="/suggestion">
-                <div className="text-gray-300 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
+                <div className="text-gray-100 block px-4 py-2 text-sm hover:bg-stone-600" role="menuitem" tabIndex="-1" id="menu-item-2">
                   AI movie suggestion
                 </div>
               </Link>
               <button
                 onClick={handleSignOut}
-                className="text-gray-300 block w-full px-4 py-2 text-left text-sm border-t border-gray-700 hover:bg-stone-600"
+                className="text-gray-100 block w-full px-4 py-2 text-left text-sm border-t border-gray-700 hover:bg-stone-600"
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-3"

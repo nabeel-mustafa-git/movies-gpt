@@ -14,6 +14,8 @@
 # protected
 /protected
 
+**/utils/keys.js
+
 # misc
 .DS_Store
 .env.local

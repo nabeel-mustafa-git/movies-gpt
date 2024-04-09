@@ -9,8 +9,8 @@ const useMovieTrailer = (videoId) => {
 
     const recievedData = await result.json();
 
-    const filtered = recievedData.results.filter((item) => item.type === "Trailer");
-    setTrailer(filtered ? filtered[0] : recievedData.results[0]);
+    const filtered = recievedData.results.filter((item) => item.name === "Official Trailer");
+    setTrailer(filtered.length !== 0 ? filtered[0] : recievedData.results[0]);
   };
 
   useEffect(() => {

@@ -5,6 +5,8 @@ import PageNotFound from "./PageNotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import Suggestion from "./Suggestion";
+import Search from "./Search";
+import MovieDetail from "./MovieDetail";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -23,6 +25,14 @@ const Body = () => {
     {
       path: "/suggestion",
       element: <Suggestion />,
+    },
+    {
+      path: "/search",
+      element: <Search />,
+    },
+    {
+      path: "/movie/:id",
+      element: <MovieDetail />,
     },
     {
       path: "*",
