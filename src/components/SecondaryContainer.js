@@ -9,7 +9,7 @@ const SecondaryContainer = () => {
   const upcoming = useSelector((store) => store.upcomming);
 
   return (
-    <div className="flex flex-col gap-8 p-10 max-md:p-4 md:mt-[-20px] relative z-50">
+    <div className="flex flex-col gap-8 p-10 max-md:p-4 relative z-50">
       {nowPlaying.nowPlayingMovies !== null ? <MovieList title={"Now Playing Movies"} movies={nowPlaying.nowPlayingMovies.results} /> : <></>}
       {topRated !== null ? <MovieList title={"Top Rated"} movies={topRated} /> : <></>}
       {popular !== null ? <MovieList title={"Popular"} movies={popular} /> : <></>}
